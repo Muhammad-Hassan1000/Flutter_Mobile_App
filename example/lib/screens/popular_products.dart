@@ -48,7 +48,7 @@ class PopularProducts extends StatelessWidget {
                       height: 170,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(productAttributes.imageUrl),
+                              image: AssetImage(productAttributes.imageUrl),
                               fit: BoxFit.contain)),
                     ),
                     Positioned(

@@ -36,7 +36,7 @@ class FeedDialog extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            child: Image.network(
+            child: Image.asset(
               prodAttr.imageUrl,
             ),
           ),

@@ -38,7 +38,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             foregroundDecoration: BoxDecoration(color: Colors.black12),
             height: MediaQuery.of(context).size.height * 0.45,
             width: double.infinity,
-            child: Image.network(
+            child: Image.asset(
               prodAttr.imageUrl,
             ),
           ),
@@ -239,7 +239,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: double.infinity,
                   height: 360,
                   child: ListView.builder(
-                    itemCount: 7,
+                    itemCount: productsList.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext ctx, int index) {
                       return ChangeNotifierProvider.value(

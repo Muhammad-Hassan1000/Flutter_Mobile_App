@@ -34,7 +34,7 @@ class _WishlistFullState extends State<WishlistFull> {
                   children: <Widget>[
                     Container(
                       height: 80,
-                      child: Image.network(favsAttr.imageUrl),
+                      child: Image.asset(favsAttr.imageUrl),
                     ),
                     SizedBox(
                       width: 10.0,

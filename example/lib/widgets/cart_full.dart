@@ -58,7 +58,7 @@ class _CartFullState extends State<CartFull> {
               width: 130,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(cartAttr.imageUrl),
+                  image: AssetImage(cartAttr.imageUrl),
                   //fit: BoxFit.fill,
                 ),
               ),

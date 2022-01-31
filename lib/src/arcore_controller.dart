@@ -31,7 +31,13 @@ class ArCoreController {
         .invokeMethod('checkIfARCoreServicesInstalled');
     return arcoreInstalled;
   }
-
+  // ArStatus ArCoreApk_requestInstall(
+  // void *env,
+  // void *application_activity,
+  // int32_t user_requested_install,
+  // ArInstallStatus *out_install_status
+  // )
+  
   ArCoreController(
       {int id,
       this.enableTapRecognizer,

@@ -467,10 +467,28 @@ class ArCoreView(val activity: Activity, context: Context, messenger: BinaryMess
             try {
                 val session = ArCoreUtils.createArSession(activity, mUserRequestedInstall, isAugmentedFaces)
                 if (session == null) {
-                    // Ensures next invocation of requestInstall() will either return
-                    // INSTALLED or throw an exception.
-                    mUserRequestedInstall = false
-                    return
+                    when (ArCoreApk.getInstance().requestInstall(this, mUserRequestedInstall)) {
+                        ArCoreApk.InstallStatus.INSTALLED -> {
+                          // Success: Safe to create the AR session.
+                          session = Session(this)
+                        }
+                        ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
+                          // When this method returns `INSTALL_REQUESTED`:
+                          // 1. ARCore pauses this activity.
+                          // 2. ARCore prompts the user to install or update Google Play
+                          //    Services for AR (market://details?id=com.google.ar.core).
+                          // 3. ARCore downloads the latest device profile data.
+                          // 4. ARCore resumes this activity. The next invocation of
+                          //    requestInstall() will either return `INSTALLED` or throw an
+                          //    exception if the installation or update did not succeed.
+                          mUserRequestedInstall = false
+                          return
+                        }
+                      }
+                //     // Ensures next invocation of requestInstall() will either return
+                //     // INSTALLED or throw an exception.
+                //     mUserRequestedInstall = false
+                //     return
                 } else {
                     val config = Config(session)
                     if (isAugmentedFaces) {
